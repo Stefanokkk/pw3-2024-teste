@@ -161,7 +161,7 @@
                         @endif
                     </div>
                     
-                    <div class="leading-loose">
+                    <div class="flex leading center flex-col w-full">
                         @yield('conteudo')
                     </div>
                 </div>
