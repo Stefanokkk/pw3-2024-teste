@@ -20,9 +20,11 @@ class AnimaisController extends Controller
     }
 
     public function gravar(Request $form) {
+        dd($form);
         $dados = $form->validate([
             'nome' => 'required|min:3',
-            'idade' => 'required|integer'
+            'idade' => 'required|integer',
+            
         ]);
 
         Animal::create($dados);
