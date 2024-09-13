@@ -1,6 +1,6 @@
 {{-- resources/views/base.blade.php --}}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,9 +36,9 @@
                 <i class="fas fa-home mr-3"></i>
                 Inicial
             </a>
-            <a href="{{ route('animais') }}" class="flex items-center text-white py-4 pl-6 nav-item @if (Request::is('animais*')) active-nav-link @else opacity-75 hover:opacity-100 @endif">
+            <a href="{{ route('filmes') }}" class="flex items-center text-white py-4 pl-6 nav-item @if (Request::is('filmes*')) active-nav-link @else opacity-75 hover:opacity-100 @endif">
                 <i class="fas fa-paw mr-3"></i>
-                Animais
+                Filmes
             </a>
             @if (Auth::user() && Auth::user()['admin'])
             <a href="{{ route('usuarios') }}" class="flex items-center text-white py-4 pl-6 nav-item @if (Request::is('usuarios*')) active-nav-link @else opacity-75 hover:opacity-100 @endif">
@@ -46,7 +46,7 @@
                 Usuários
             </a>
             @endif
-            
+
         </nav>
         <a href="#" class="absolute w-full upgrade-btn bottom-0 active-nav-link text-white flex items-center justify-center py-4">
             <i class="fas fa-arrow-circle-up mr-3"></i>
@@ -59,7 +59,7 @@
         <header class="w-full items-center bg-white py-2 px-6 hidden sm:flex">
             <div class="w-1/2"></div>
             <div x-data="{ isOpen: false }" class="relative w-1/2 flex justify-end">
-        
+
                 <span class="flex items-center mr-2">
                     @if (Auth::user())
                         {{ Auth::user()['name'] }}
@@ -67,13 +67,13 @@
                         Você não está autenticado
                     @endif
                 </span>
-                
+
                 <button @click="isOpen = !isOpen" class="realtive z-10 w-12 h-12 rounded-full overflow-hidden border-4 border-gray-400 hover:border-gray-300 focus:border-gray-300 focus:outline-none">
                     <img src="{{ asset('img/pessoa.png') }}">
                 </button>
                 <button x-show="isOpen" @click="isOpen = false" class="h-full w-full fixed inset-0 cursor-default"></button>
                 <div x-show="isOpen" class="absolute w-32 bg-white rounded-lg shadow-lg py-2 mt-16">
-                    
+
                     @if (Auth::user())
                     <a href="{{route('logout')}}" class="block px-4 py-2 account-link hover:text-white">Logout</a>
                     @else
@@ -140,13 +140,13 @@
                 <i class="fas fa-plus mr-3"></i> New Report
             </button> -->
         </header>
-    
+
         <div class="w-full h-screen overflow-x-hidden border-t flex flex-col">
             <main class="w-full flex-grow p-6">
                 <h1 class="text-3xl text-black pb-6">@yield('titulo')</h1>
 
                 <div class="flex flex-wrap">
-                    
+
                     <div class="leading-loose min-w-full mb-2">
                         @if(session('erro'))
                         <div class="bg-red-200 border-t-4 border-red-500 rounded-b text-red-800 px-4 py-3 shadow-md" role="alert">
@@ -160,18 +160,18 @@
                           </div>
                         @endif
                     </div>
-                    
+
                     <div class="flex leading center flex-col w-full">
                         @yield('conteudo')
                     </div>
                 </div>
             </main>
-    
+
             <footer class="w-full bg-white text-right p-4">
                 Built by <a target="_blank" href="https://davidgrzyb.com" class="underline">David Grzyb</a>. <a href="https://www.flaticon.com/free-icons/person" title="person icons">Person icons created by Flat Icons - Flaticon</a>
             </footer>
         </div>
-        
+
     </div>
 
     <!-- AlpineJS -->

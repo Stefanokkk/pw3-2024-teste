@@ -1,8 +1,8 @@
-{{-- views/animais/cadastrar.blade.php --}}
+{{-- views/usuario/cadastrar.blade.php --}}
 
 @extends('base')
 
-@section('titulo', 'Cadastrar | Animais para adoção')
+@section('titulo', 'Cadastrar | Cadastrar Usuário')
 
 @section('conteudo')
 <p>Preencha o formulário</p>
@@ -13,7 +13,7 @@
     @foreach($errors->all() as $erro)
         <p>{{ $erro }}</p>
     @endforeach
-</div>  
+</div>
 @endif
 
 <form method="post" action="{{ route('usuarios.gravar') }}">

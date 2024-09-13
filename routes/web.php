@@ -16,15 +16,19 @@ Route::post('/filmes/cadastrar',[FilmesController::class, 'gravar'])->name('film
 
 Route::get('/filmes/apagar/{filme}', [FilmesController::class, 'apagar'])->name('filmes.apagar');
 
+Route::get('/filmes/editarForm/{filme}', [FilmesController::class, 'editarForm'])->name('filmes.editarForm');
+
+Route::put('/filmes/editar/{id}',[FilmesController::class, 'editar'])->name('filmes.editar');
+
 Route::delete('/filmes/apagar/{filme}', [FilmesController::class, 'deletar']);
 
 Route::prefix('usuarios')->middleware('auth')->group(function() {
     Route::get('/', [UsuariosController::class, 'index'])->name('usuarios');
 
     Route::get('/inserir', [UsuariosController::class, 'create'])->name('usuarios.inserir');
-    
+
     Route::post('/inserir', [UsuariosController::class, 'insert'])->name('usuarios.gravar');
-    
+
     Route::get('/apagar/{usuario}', [UsuariosController::class, 'remove'])->name('usuarios.apagar');
 });
 
