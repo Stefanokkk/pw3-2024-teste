@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\AnimaisController;
+use App\Http\Controllers\FilmesController;
 use App\Http\Controllers\UsuariosController;
 use Illuminate\Support\Facades\Route;
 
@@ -8,15 +8,15 @@ Route::get('/', function () {
     return view('inicial');
 })->name('index');
 
-Route::get('/animais', [AnimaisController::class, 'index'])->name('animais');
+Route::get('/filmes', [FilmesController::class, 'index'])->name('filmes');
 
-Route::get('/animais/cadastrar', [AnimaisController::class, 'cadastrar'])->name('animais.cadastrar');
+Route::get('/filmes/cadastrar', [FilmesController::class, 'cadastrar'])->name('filmes.cadastrar');
 
-Route::post('/animais/cadastrar',[AnimaisController::class, 'gravar'])->name('animais.gravar');
+Route::post('/filmes/cadastrar',[FilmesController::class, 'gravar'])->name('filmes.gravar');
 
-Route::get('/animais/apagar/{animal}', [AnimaisController::class, 'apagar'])->name('animais.apagar');
+Route::get('/filmes/apagar/{filme}', [FilmesController::class, 'apagar'])->name('filmes.apagar');
 
-Route::delete('/animais/apagar/{animal}', [AnimaisController::class, 'deletar']);
+Route::delete('/filmes/apagar/{filme}', [FilmesController::class, 'deletar']);
 
 Route::prefix('usuarios')->middleware('auth')->group(function() {
     Route::get('/', [UsuariosController::class, 'index'])->name('usuarios');
