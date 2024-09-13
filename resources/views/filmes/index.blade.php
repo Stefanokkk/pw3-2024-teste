@@ -1,12 +1,12 @@
-{{-- resources/views/filmes/index.blade.php --}}
-
 @extends('base')
 
 @section('titulo', 'Filmes para assistir')
 
 @section('conteudo')
 <p>
-    <a href="{{ route('filmes.cadastrar') }}"  class="px-4 py-1 text-white font-light tracking-wider bg-blue-800 rounded"><i class="fas fa-plus mr-3"></i> Cadastrar filme</a>
+    @if (Auth::user() && Auth::user()->admin)
+        <a href="{{ route('filmes.cadastrar') }}" class="px-4 py-1 text-white font-light tracking-wider bg-blue-800 rounded"><i class="fas fa-plus mr-3"></i> Cadastrar filme</a>
+    @endif
 </p>
 <p>Veja nossa lista de filmes para assistir</p>
 
@@ -22,13 +22,14 @@
                 <p class="text-sm text-gray-500">Categoria: {{ $filme['categoria'] }}</p>
                 <a href="{{ $filme['link'] }}" class="block mt-3 text-blue-500 hover:underline">{{ $filme['nome'] }} - Trailer</a>
                 <div class="flex justify-between">
-                    <a href="{{ route('filmes.editarForm', $filme['id']) }}" class="block mt-3 text-yellow-500 hover:underline">Editar</a>
-                    <a href="{{ route('filmes.apagar', $filme['id']) }}" class="block mt-3 text-red-500 hover:underline">Apagar</a>
+                    @if (Auth::user() && Auth::user()->admin)
+                        <a href="{{ route('filmes.editarForm', $filme['id']) }}" class="block mt-3 text-yellow-500 hover:underline">Editar</a>
+                        <a href="{{ route('filmes.apagar', $filme['id']) }}" class="block mt-3 text-red-500 hover:underline">Apagar</a>
+                    @endif
                 </div>
             </div>
         </div>
         @endforeach
     </div>
-
 </div>
 @endsection

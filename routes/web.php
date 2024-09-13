@@ -10,26 +10,24 @@ Route::get('/', function () {
 
 Route::get('/filmes', [FilmesController::class, 'index'])->name('filmes');
 
-Route::get('/filmes/cadastrar', [FilmesController::class, 'cadastrar'])->name('filmes.cadastrar');
+Route::get('/filmes/cadastrar', [FilmesController::class, 'cadastrar'])->middleware('admin')->name('filmes.cadastrar');
 
-Route::post('/filmes/cadastrar',[FilmesController::class, 'gravar'])->name('filmes.gravar');
+Route::post('/filmes/cadastrar',[FilmesController::class, 'gravar'])->middleware('admin')->name('filmes.gravar');
 
-Route::get('/filmes/apagar/{filme}', [FilmesController::class, 'apagar'])->name('filmes.apagar');
+Route::get('/filmes/apagar/{filme}', [FilmesController::class, 'apagar'])->middleware('admin')->name('filmes.apagar');
 
-Route::get('/filmes/editarForm/{filme}', [FilmesController::class, 'editarForm'])->name('filmes.editarForm');
+Route::get('/filmes/editarForm/{filme}', [FilmesController::class, 'editarForm'])->middleware('admin')->name('filmes.editarForm');
 
-Route::put('/filmes/editar/{id}',[FilmesController::class, 'editar'])->name('filmes.editar');
+Route::put('/filmes/editar/{id}',[FilmesController::class, 'editar'])->middleware('admin')->name('filmes.editar');
 
-Route::delete('/filmes/apagar/{filme}', [FilmesController::class, 'deletar']);
+Route::delete('/filmes/apagar/{filme}', [FilmesController::class, 'deletar'])->middleware('admin');
 
 Route::prefix('usuarios')->middleware('auth')->group(function() {
-    Route::get('/', [UsuariosController::class, 'index'])->name('usuarios');
+    Route::get('/', [UsuariosController::class, 'index'])->middleware('admin')->name('usuarios');
 
-    Route::get('/inserir', [UsuariosController::class, 'create'])->name('usuarios.inserir');
+    Route::get('/inserir', [UsuariosController::class, 'create'])->middleware('admin')->name('usuarios.inserir');
 
-    Route::post('/inserir', [UsuariosController::class, 'insert'])->name('usuarios.gravar');
-
-    Route::get('/apagar/{usuario}', [UsuariosController::class, 'remove'])->name('usuarios.apagar');
+    Route::post('/inserir', [UsuariosController::class, 'insert'])->middleware('admin')->name('usuarios.gravar');
 });
 
 Route::get('login', [UsuariosController::class, 'login'])->name('login');
